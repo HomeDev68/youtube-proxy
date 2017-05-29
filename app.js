@@ -8,7 +8,7 @@ const ytdl = require('ytdl-core');
 
 app.get('/:vid', function (req, res) {
     ytdl.getInfo('http://www.youtube.com/watch?v=' + req.params.id, function (err, info) {
-        res.json(info)
+        res.send(JSON.stringify(info))
     })
 })
 
