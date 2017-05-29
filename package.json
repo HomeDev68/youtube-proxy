@@ -1,0 +1,24 @@
+{
+  "name": "youtube-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kinhunt/youtube-proxy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kinhunt/youtube-proxy/issues"
+  },
+  "homepage": "https://github.com/kinhunt/youtube-proxy#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "node-http-proxy": "^0.2.3",
+    "ytdl-core": "^0.14.1"
+  }
+}
