@@ -1,4 +1,3 @@
-
 const https = require('https'),
     express = require('express'),
     app = express(),
@@ -16,6 +15,9 @@ var proxy = httpProxy.createProxyServer({
 
 app.get('/youtube/:vid', function (req, res) {
     ytdl.getInfo('http://www.youtube.com/watch?v=' + req.params.vid, function (err, info) {
+        if (err) {
+            return res.status(500).send('Error retrieving video info');
+        }
         let downloadUrl = info.formats[0].url
         var result = url.parse(downloadUrl);
         let host = result.hostname.replace(".googlevideo.com", '')
@@ -31,11 +33,11 @@ app.get('/stream/youtube/:host/*', function (req, res) {
         target: 'https://' + host, headers: {
             host: host
         }
+    }, function (err) {
+        res.status(500).send('Error proxying request');
     });
 })
 
-
 app.listen(process.env.PORT, function () {
-
     console.log('Example app listening on port ' + process.env.PORT)
 })
