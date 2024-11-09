@@ -22,6 +22,9 @@ app.get('/youtube/:vid', function (req, res) {
         if (err) {
             return res.status(500).send('Error retrieving video info');
         }
+        if (!info.formats || info.formats.length === 0) {
+            return res.status(500).send('No video formats found');
+        }
         let downloadUrl = info.formats[0].url
         var result = url.parse(downloadUrl);
         let host = result.hostname.replace(".googlevideo.com", '')
