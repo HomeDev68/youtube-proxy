@@ -13,6 +13,10 @@ var proxy = httpProxy.createProxyServer({
     agent: https.globalAgent
 }); // See (†)
 
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'instructions.html'));
+});
+
 app.get('/youtube/:vid', function (req, res) {
     ytdl.getInfo('http://www.youtube.com/watch?v=' + req.params.vid, function (err, info) {
         if (err) {
